@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 import { getMessaging, getToken } from "firebase/messaging";
+import { getJstISOString } from "../utils/time";
 
 const app = initializeApp({
   apiKey: "AIzaSyDX00jV9oifCQ_QzaZL9pSSuR2oulGOdiU",
@@ -23,7 +24,11 @@ export async function requestNotificationPermission() {
     if (token) {
       console.log(`Notification token: ${token}`);
       // Add token to Firestore
-      await addDoc(collection(firestore, "notification"), { token: token });
+      await addDoc(collection(firestore, "notification"), {
+        token: token,
+        userAgent: window.navigator.userAgent,
+        created: getJstISOString(),
+      });
     } else {
       console.log(
         "No registration token available. Request permission to generate one."
