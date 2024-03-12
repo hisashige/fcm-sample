@@ -17,9 +17,11 @@ export async function requestNotificationPermission() {
   const messaging = getMessaging(app);
 
   try {
+    console.log("requestNotificationPermission");
     const token = await getToken(messaging, {
       vapidKey: import.meta.env.VITE_FCM_WEBPUSH_KEY as string,
     });
+    console.log("getToken end");
 
     if (token) {
       console.log(`Notification token: ${token}`);
