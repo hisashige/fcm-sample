@@ -33,8 +33,8 @@ export function useNotification() {
   // フォアグラウンド時のメッセージ受信
   useEffect(() => {
     const messaging = getMessaging();
-    const unsubscribe = onMessage(messaging, (payload) => {
-      console.log("Message received. ", payload);
+    const unsubscribe = onMessage(messaging, async (payload) => {
+      console.log("Received foreground message ", payload);
 
       if (!payload.notification) return;
 
@@ -44,12 +44,11 @@ export function useNotification() {
       if (!title || !body) return;
 
       // 通知を作成して表示する
-      const notification = new Notification(title, { body });
+      const serviceWorkerRegistration =
+        await navigator.serviceWorker.getRegistration();
 
-      // 通知をクリックした際の動作を設定する
-      notification.onclick = () => {
-        console.log("Notification clicked.");
-      };
+      if (!serviceWorkerRegistration) return;
+      serviceWorkerRegistration.showNotification(title, { body });
     });
 
     return () => {
