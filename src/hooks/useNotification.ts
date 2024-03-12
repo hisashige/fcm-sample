@@ -24,7 +24,6 @@ export function useNotification() {
     setIsRequesting(true);
 
     return requestNotificationPermission().finally(() => {
-      console.log("requestNotificationPermission finally");
       revalidate();
       setIsRequesting(false);
     });
