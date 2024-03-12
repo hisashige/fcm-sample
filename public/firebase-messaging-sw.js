@@ -13,6 +13,7 @@ firebase.initializeApp({
 });
 const messaging = firebase.messaging();
 
+// バックグラウンド時のメッセージ受信
 messaging.onBackgroundMessage((payload) => {
   console.log(
     "[firebase-messaging-sw.js] Received background message ",
