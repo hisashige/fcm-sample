@@ -3,6 +3,7 @@ import { getFirestore, collection, addDoc } from "firebase/firestore";
 import { getMessaging, getToken } from "firebase/messaging";
 import { getJstISOString } from "../utils/time";
 
+// apiKeyはプロジェクト識別をしているだけなので公開して良いらしい
 const app = initializeApp({
   apiKey: "AIzaSyDX00jV9oifCQ_QzaZL9pSSuR2oulGOdiU",
   authDomain: "pwa-sample-32b5e.firebaseapp.com",

@@ -18,7 +18,7 @@ function App() {
           ) : permission === "denied" ? (
             <Text>プッシュ通知を拒否しました</Text>
           ) : permission === "granted" ? (
-            <Text>新着記事をプッシュ通知します！</Text>
+            <Text>プッシュ通知を許可しています！</Text>
           ) : (
             <Button onClick={requestPermission} isLoading={isRequesting}>
               通知を受け取る

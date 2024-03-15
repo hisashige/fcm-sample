@@ -1,30 +1,19 @@
-# React + TypeScript + Vite
+# PWAとFirebase Cloud MessagingによるPUSH通知のサンプル
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### 画面
+React + Vite
 
-Currently, two official plugins are available:
+<img src="src/assets/screenshot.png" width="50%" />
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ざっくり事前準備
+- Firebaseプロジェクト作っとく
+- FirestoreとMessagingを使える様にしとく
+- FirebaseのAPIKEYとかを設定する
+  - firebase-messaging-sw.js: サービスワーカでバックグラウンドでPUSH通知を受信するため
+  - firebase.ts: FCMでトークン取得したり、Firestoreにトークン保存したりするため
+- vercelとかどっかに適当にデプロイする
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## ざっくり使い方
+- どこかにデプロイしたURLを、iOSのsafariかAndroidのchromeで開き、ホーム画面に追加してPWAとして使う。
+- 画面真ん中に「通知を受け取る」ボタンがあるので、許可する。
+- Firebaseのコンソールから、FCMのテストでトークン指定してPUSH通知して、通知が来るか確認する。

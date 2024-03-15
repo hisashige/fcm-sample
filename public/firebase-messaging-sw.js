@@ -3,6 +3,7 @@ importScripts(
   "https://www.gstatic.com/firebasejs/8.10.1/firebase-messaging.js"
 );
 
+// apiKeyはプロジェクト識別をしているだけなので公開して良いらしい
 firebase.initializeApp({
   apiKey: "AIzaSyDX00jV9oifCQ_QzaZL9pSSuR2oulGOdiU",
   authDomain: "pwa-sample-32b5e.firebaseapp.com",
